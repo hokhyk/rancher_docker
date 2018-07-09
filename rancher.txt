@@ -1,0 +1,26 @@
+sudo apt-get install     apt-transport-https     ca-certificates     curl     software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+lsb_release -cs
+
+
+ sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+	
+sudo apt-get update
+ok@ciserver:/mnt/data/software$ apt-cache madison docker-ce
+sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial
+sudo docker run hello-world
+
+sudo netstat -tunlp
+vmware-hostd stop
+sudo gpasswd -a hok docker
+newgrp - docker
+docker run -d -p 80:80 -p 443:443 rancher/rancher:stable
+
+docker run -d --restart=unless-stopped \
+  -p 80:80 -p 443:443 \
+  rancher/rancher:latest
+docker ps
