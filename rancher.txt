@@ -28,11 +28,12 @@ docker ps
 
 
 etcd:
-sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --etcd
+sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --address 192.168.0.61 --internal-address 192.168.0.61 --etcd --controlplane
 
 control:
-sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --address 192.168.0.62 --internal-address 10.1.1.62 --controlplane
+sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --address 192.168.0.62 --internal-address 192.168.0.62 --controlplane
+
 
 worker1:
-sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --address 192.168.0.63 --internal-address 10.1.1.63 --worker
+sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.0.4 --server https://192.168.0.60 --token 5jq66h77njz6rn6tdxd9qpj7n8cwzb9cwhzrzsdx7vdhq5clh77r7q --ca-checksum 143e41d423798a49e464aa85bf21f8f8fc9df22ec2ce453cf4617a8c0075c006 --address 192.168.0.63 --internal-address 192.168.0.63 --worker
 
