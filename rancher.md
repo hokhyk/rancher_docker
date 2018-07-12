@@ -18,13 +18,28 @@ sudo netstat -tunlp
 vmware-hostd stop
 sudo gpasswd -a hok docker
 newgrp - docker
-docker run -d -p 80:80 -p 443:443 rancher/rancher:stable
 
+mysql -uroot --socket=/tmp/akonadi-vagrant.HRCVLU/mysql.socket
+
+> CREATE DATABASE IF NOT EXISTS cattle COLLATE = 'utf8_general_ci' CHARACTER SET = 'utf8';
+> GRANT ALL ON cattle.* TO 'cattle'@'%' IDENTIFIED BY 'cattle';
+> GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
+
+
+# rancher2.0
 docker run -d --restart=unless-stopped \
-  -p 80:80 -p 443:443 \
-  rancher/rancher:latest
+  -p 80:80 -p 44:443 -p 22:22\
+  --db-host 192.168.0.60 --db-port 3306 --db-user cattle --db-pass cattle --db-name cattle \
+  rancher/rancher:v1.6
+  
 docker ps
 
+# rancher1.6:
+docker run -d --restart=unless-stopped --name rancher16server  -p 8080:80 -p 4430:443 -p 2200:22  rancher/server:stable  --db-host 192.168.0.60 --db-port 3306 --db-user cattle --db-pass cattle --db-name cattle
+
+docker ps
+
+# docker run -d -p 80:80 -p 443:443 rancher/rancher:stable
 
 
 etcd:
