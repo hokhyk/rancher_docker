@@ -48,7 +48,6 @@ newgrp - docker
 
 # docker exec -it pensive_newton /bin/bash
   If you don't know the IP address of the container, you can get it using the command below:
-
 export INSTANCE_NAME="nginx-bg"
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $INSTANCE_NAME
 
